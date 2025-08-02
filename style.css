@@ -1,0 +1,382 @@
+/* --- Dark Theme Colors Palette --- */
+/* (Keep this as is, as it defines the color variables) */
+:root {
+    --dark-bg-body: #21212B; /* Darkest background - deep charcoal */
+    --dark-bg-card: #2E2E3C; /* Slightly lighter for cards/sections - dark slate */
+    --dark-bg-header: #1B1B26; /* Deepest for header - nearly black with a hint of blue */
+    --dark-bg-light: #3A3A4A; /* Lighter dark for active elements - medium dark gray */
+
+    /* Text Colors */
+    --light-text-primary: #F8F8F2; /* Bright text for main content - nearly white */
+    --light-text-secondary: #BD93F9; /* Bright purple for titles/strong text - "Purple Haze" */
+    --light-text-accent: #8BE9FD; /* Bright cyan for accents - "Electric Blue" */
+    --light-text-highlight: #F1FA8C; /* Bright yellow for highlights - "Lemon Drop" */
+    --light-text-subtle: #ABB2BF; /* A bit softer for descriptions - muted grey-blue */
+
+    /* Accent Colors (re-used for charts/sliders) */
+    --accent-green: #50FA7B; /* Bright green - "Vibrant Green" */
+    --accent-blue: #64B5F6;  /* Bright blue - "Sky Blue" */
+    --accent-yellow: #FFCB6B; /* Bright yellow/orange - "Sunny Orange" */
+    --accent-red: #FF5555;   /* Bright red - "Hot Rod Red" */
+    --accent-purple: #BD93F9; /* Bright purple - same as light-text-secondary */
+
+    /* Borders */
+    --dark-border-primary: #44475A; /* Darker border - subtle dark blue-gray */
+    --dark-border-secondary: #6272A4; /* Medium dark border - more prominent blue-gray */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    background-color: var(--dark-bg-body);
+    color: var(--light-text-primary);
+    line-height: 1.6;
+}
+
+.report-card {
+    max-width: 1000px;
+    margin: 30px auto;
+    background-color: var(--dark-bg-card);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+    overflow: hidden;
+    border: 1px solid var(--dark-border-primary);
+}
+
+header {
+    background-color: var(--dark-bg-header);
+    color: var(--light-text-primary);
+    padding: 30px 40px;
+    text-align: center;
+    border-bottom: 5px solid var(--dark-border-secondary);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.8em;
+    letter-spacing: 1px;
+    color: var(--light-text-accent); /* Bright cyan for main title */
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    opacity: 0.9;
+    color: var(--light-text-subtle);
+}
+
+.section {
+    padding: 30px 40px;
+    border-bottom: 1px solid var(--dark-border-primary);
+}
+
+.section:last-child {
+    border-bottom: none;
+    padding-bottom: 40px;
+}
+
+h2 {
+    color: var(--light-text-secondary); /* Bright purple for section titles */
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--dark-border-primary);
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2::before {
+    content: ' ';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: var(--accent-green); /* Bright green icon */
+    border-radius: 3px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.info-box {
+    background-color: var(--dark-bg-light);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--dark-border-primary);
+    flex: 1 1 calc(33% - 20px); /* Adjust width for 3 items per row */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    min-width: 250px; /* Ensure boxes don't get too small */
+}
+
+.info-box strong {
+    color: var(--light-text-highlight); /* Bright yellow for info labels */
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.remarks {
+    font-style: italic;
+    background-color: var(--dark-bg-light); /* Using a lighter dark background */
+    padding: 15px;
+    border-left: 5px solid var(--light-text-accent); /* Bright cyan border */
+    border-radius: 8px;
+    margin-top: 20px;
+    color: var(--light-text-subtle); /* Softer text for remarks */
+}
+
+.remarks strong {
+    color: var(--light-text-accent); /* Bright cyan for "Remarks" label */
+}
+
+/* ----- Circular Chart/Slider Styles ----- */
+.chart-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 40px 20px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.chart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 180px;
+}
+
+.circular-progress {
+    position: relative;
+    width: 180px; /* Diameter */
+    height: 180px;
+    border-radius: 50%;
+    /* Default background, overridden by JS */
+    background: conic-gradient(var(--accent-green) 0%, var(--dark-border-primary) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: var(--accent-green); /* Green for positive */
+    box-shadow: inset 0 0 0 8px var(--dark-bg-card), 0 0 0 10px var(--dark-border-primary);
+    transition: background 0.5s ease-out;
+}
+
+.circular-progress::before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    background-color: var(--dark-bg-card); /* Inner circle matches card background */
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.progress-value {
+    position: relative;
+    z-index: 1;
+    color: var(--light-text-primary); /* Bright text for values */
+}
+
+.chart-label {
+    margin-top: 15px;
+    font-weight: 600;
+    color: var(--light-text-subtle); /* Softer text for labels */
+    font-size: 1.1em;
+}
+
+/* Small circular progress for problem solving count */
+.small-circular-progress {
+    position: relative;
+    width: 120px; /* Smaller diameter */
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent-green) 0%, var(--dark-border-primary) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--accent-green);
+    box-shadow: inset 0 0 0 6px var(--dark-bg-card), 0 0 0 8px var(--dark-border-primary);
+    transition: background 0.5s ease-out;
+    margin: 0 auto 15px auto;
+}
+
+.small-circular-progress::before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    background-color: var(--dark-bg-card);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.small-progress-value {
+    position: relative;
+    z-index: 1;
+    color: var(--light-text-primary);
+}
+
+.small-chart-label {
+    font-weight: 600;
+    color: var(--light-text-subtle);
+    font-size: 1em;
+    text-align: center;
+}
+
+/* Skill list styling */
+.skill-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-list li {
+    background-color: var(--dark-bg-light); /* Lighter dark background for skill items */
+    border-left: 4px solid var(--accent-purple); /* Bright purple border */
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.skill-list li strong {
+    display: block;
+    color: var(--light-text-secondary); /* Bright purple for skill names */
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+.skill-list li p {
+    margin: 0;
+    color: var(--light-text-subtle); /* Softer text for skill descriptions */
+    font-size: 0.95em;
+}
+
+/* --- Linear Skill Sliders --- */
+.skill-meter-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--light-text-secondary); /* Bright purple for skill percentage label */
+    font-size: 0.9em;
+}
+
+.skill-meter-bar {
+    flex-grow: 1;
+    background-color: var(--dark-border-primary); /* Darker track for the bar */
+    border-radius: 5px;
+    height: 12px;
+    margin: 0 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-fill {
+    height: 100%;
+    background-color: var(--accent-green); /* Default excellent color */
+    border-radius: 5px;
+    width: var(--skill-level, 0%);
+    transition: width 1.5s ease-out;
+}
+
+/* Color variations for skill fill (adjusted for dark theme vibrancy) */
+.skill-fill[data-level="90-100"] { background-color: var(--accent-green); } /* Excellent */
+.skill-fill[data-level="80-89"] { background-color: var(--accent-blue); } /* Impressive */
+.skill-fill[data-level="70-79"] { background-color: var(--accent-yellow); } /* Good */
+.skill-fill[data-level="50-69"] { background-color: var(--accent-red); } /* Needs Improvement */
+
+
+/* --- Chart Section Specific Styles --- */
+.chart-wrapper {
+    background-color: var(--dark-bg-light); /* Lighter dark for chart containers */
+    border: 1px solid var(--dark-border-primary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chart-wrapper h3 {
+    color: var(--light-text-secondary); /* Bright purple for chart titles */
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* MODIFIED: Increased height for performance chart canvas */
+.chart-canvas-container {
+    max-width: 100%;
+    height: 550px; /* Increased height for more space */
+    margin: 0 auto;
+    position: relative;
+}
+
+.small-chart-canvas-container {
+    max-width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* --- Problem Solving Section Styling --- */
+.problem-solving-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.problem-solving-card {
+    background-color: var(--dark-bg-light); /* Using darker background for consistency */
+    border: 1px solid var(--dark-border-primary);
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 calc(50% - 25px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    min-width: 280px;
+}
+
+.problem-solving-card h4 {
+    color: var(--accent-green); /* Bright green for card titles */
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--dark-border-primary);
+    padding-bottom: 8px;
+}
+
+.problem-solving-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.problem-solving-card ul li {
+    background-color: var(--dark-bg-card); /* Darker background for list items */
+    border-left: 3px solid var(--accent-blue); /* Bright blue border */
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    color: var(--light-text-subtle); /* Softer text for list items */
+}
+
+.problem-solving-card ul li:last-child {
+    margin-bottom: 0;
+}
